@@ -9,17 +9,31 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>
 (options => options.UseSqlServer(builder.Configuration
-.GetConnectionString("DefaultConnection")));
+.GetConnectionString("DefaultConnection")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+
 
 //builder.Services.AddDefaultIdentity<AppUsers>(options => { options.SignIn.RequireConfirmedAccount = false; options.SignIn.RequireConfirmedEmail = false; }).AddDefaultUI().AddEntityFrameworkStores<ApplicationDbContext>();
 
 
 builder.Services.AddIdentity<AppUsers, IdentityRole>()
+
+
 .AddDefaultTokenProviders()
 .AddRoles<IdentityRole>()
 .AddDefaultUI()
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddDistributedMemoryCache(); // <- This service
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(2000);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
 builder.Services.Configure<IdentityOptions>(options =>
@@ -72,7 +86,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseSession();
 app.MapRazorPages();
 
 app.MapControllerRoute(

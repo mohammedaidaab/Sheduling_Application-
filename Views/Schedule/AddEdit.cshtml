@@ -8,12 +8,13 @@
     <div class="col-2">
     </div>
     <div class="col-4">
-        <h1>Add Schedule</h1>
+        <h4>Add Schedule</h4>
     </div>
 </div>
    <form asp-action="@ViewBag.action">
     <br />
     <input asp-for="ScheduleID" hidden />
+    <input asp-for="action" value="@ViewBag.action" hidden />
     <div class="row">
         <div class="col-2">
         </div>
@@ -35,7 +36,7 @@
     </div>
     <br />
 
-    <br />
+
   
     <div class="row">
         <div class="col-2">
@@ -67,12 +68,70 @@
     <div class="row">
         <div class="col-2">
         </div>
-        <div class="col-8">
+        <div class="col-6">
             <label for="Employee">Employee</label>
             <select class="form-control border border-info" asp-for=EmployeeID asp-items="@(new SelectList(ViewBag.employees, nameof(Employee.EmployeeID), nameof(Employee.FullName)))" class="form-control">
                 <option value="0">Select a Employee...</option>
             </select>
         </div>
 
+        <div class="col-2">
+            <label></label>
+            <button class="btn btn-outline-dark form-control" asp-action="AddEmp">Add</button>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+      
+        </div>
+
+        <div class="col-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                            <th scope="col">Emloyee Name</th>
+                            <th scope="col"></th>
+
+                        </tr>
+                   
+                </thead>
+                <tbody>
+                    @if(Model!=null){
+                      @foreach (var obj in Model.employee)
+                    {
+                      
+                    <tr>
+                        <th scope="row">@obj.FullName</th>
+                        <td><button class="btn btn-danger" asp-action="delEmp" asp-route-empid="@obj.EmployeeID">Delete</button></td>
+                 
+                    </tr>
+                    }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <br>
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+            @if (ViewBag.action == "AddPOST")
+            {
+                <button class="btn btn-info">Save</button>
+            }
+            else
+            {
+                <button class="btn btn-info">Update</button>
+            }
+            <a class="btn btn-success" asp-action="index">Cancel</a>
+        </div>
     </div>
        </form>

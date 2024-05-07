@@ -12,7 +12,7 @@ using WebApplication1.Models;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240507072910_abc")]
+    [Migration("20240507102918_abc")]
     partial class abc
     {
         /// <inheritdoc />
@@ -273,16 +273,16 @@ namespace WebApplication1.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "79750f27-6c4e-4993-9173-edb226a439b2",
+                            ConcurrencyStamp = "643f78b6-f76f-4398-8d64-008ae371597a",
                             Email = "admin@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
                             LastName = "Ofoedu",
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@abc.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEObPy9nsbFO7bDey2T9Tip0gC/E6zrIgErWzc2GCdV4iUMWyy0HLTyg8bXNHzjC9/A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKbdVPpMFoRSi+OFTRgdc989vXFFX2Ulcm1u+kvSg1Oi5PFm73lGDs3Fs2Mv2G9vdg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "05023459-2787-49d7-905e-9a6b47ba2645",
+                            SecurityStamp = "062f9af1-ac75-4b1e-9610-4a6200dbf390",
                             TwoFactorEnabled = false,
                             UserName = "admin@abc.com"
                         });

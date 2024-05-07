@@ -29,5 +29,8 @@ namespace WebApplication1.Models
 
         [ForeignKey("ScheduleID")]
         public List<Employee> employee { get; set; }
+
+        [NotMapped]
+        public string action { get; set; }
     }
 }

@@ -231,7 +231,7 @@ namespace WebApplication1.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "79750f27-6c4e-4993-9173-edb226a439b2", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAIAAYagAAAAEObPy9nsbFO7bDey2T9Tip0gC/E6zrIgErWzc2GCdV4iUMWyy0HLTyg8bXNHzjC9/A==", null, false, "05023459-2787-49d7-905e-9a6b47ba2645", false, "admin@abc.com" });
+                values: new object[] { "1", 0, "643f78b6-f76f-4398-8d64-008ae371597a", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAIAAYagAAAAEKbdVPpMFoRSi+OFTRgdc989vXFFX2Ulcm1u+kvSg1Oi5PFm73lGDs3Fs2Mv2G9vdg==", null, false, "062f9af1-ac75-4b1e-9610-4a6200dbf390", false, "admin@abc.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

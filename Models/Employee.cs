@@ -5,7 +5,7 @@ namespace WebApplication1.Models
 {
     public class Employee
     {
-        [Key]
+       
         public int EmployeeID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -15,5 +15,7 @@ namespace WebApplication1.Models
         public string Gender { get; set; }
         [ForeignKey("EmployeeID")]
         public List<Schedule> schedules { get; set; }
+
+       
     }
 }
