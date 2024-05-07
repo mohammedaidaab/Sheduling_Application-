@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Schedule>
+<br />
+<a class="btn btn-info" asp-action="Add" asp-controller="Schedule">New Schedule</a>
+<br />
+<br />
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Schedule Name</th>
+             <th scope="col">Date</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <th scope="row">@obj.Name</th>
+               
+                <td>@obj.Date.ToString("MM/dd/yyyy")</td>
+                <td>@obj.StartDate.ToString("MM/dd/yyyy")</td>
+                <td>@obj.EndDate.ToString("MM/dd/yyyy")</td>
+                <td>@obj.StartTime.ToString("HH:mm")</td>
+                <td>@obj.EndTime.ToString("HH:mm")</td>
+                <td><a asp-action="Update" class="btn btn-secondary" asp-route-empid="@obj.EmployeeID">Edit</a></td>
+                <td><a asp-action="Delete" class="btn btn-danger" asp-route-empid="@obj.EmployeeID">Delete</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

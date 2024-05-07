@@ -1,0 +1,78 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Schedule
+<div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-4">
+        <h1>Add Schedule</h1>
+    </div>
+</div>
+   <form asp-action="@ViewBag.action">
+    <br />
+    <input asp-for="ScheduleID" hidden />
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-3">
+            <label for="FirstName">Sheduled Date</label>
+            <input asp-for="Date" class="form-control border border-info" />
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <label for="Name">Schedule Name</label>
+            <input asp-for="Name" class="form-control border border-info" />
+        </div>
+       
+    </div>
+    <br />
+
+    <br />
+  
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+            <label for="StartDate">Start Date</label>
+            <input asp-for="StartDate" class="form-control border border-info" />
+        </div>
+        <div class="col-4">
+            <label for="StartTime">Start Time</label>
+            <input asp-for="StartTime" class="form-control border border-info" />
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+            <label for="EndDate">End Date</label>
+            <input asp-for="EndDate" class="form-control border border-info" />
+        </div>
+        <div class="col-4">
+            <label for="EndTime">End Time</label>
+            <input asp-for="EndTime" class="form-control border border-info" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <label for="Employee">Employee</label>
+            <select class="form-control border border-info" asp-for=EmployeeID asp-items="@(new SelectList(ViewBag.employees, nameof(Employee.EmployeeID), nameof(Employee.FullName)))" class="form-control">
+                <option value="0">Select a Employee...</option>
+            </select>
+        </div>
+
+    </div>
+       </form>

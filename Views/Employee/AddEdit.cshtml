@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Employee
+<div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-4">
+        <h1>Add Employee</h1>
+        </div>
+        </div>
+
+<form asp-action="@ViewBag.action">
+    <br />
+    <input asp-for="EmployeeID"  hidden/>
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+            <label for="FirstName">First Name</label>
+            <input asp-for="FirstName" class="form-control border border-info" />
+        </div>
+        <div class="col-4">
+            <label for="LastName">Last Name</label>
+            <input asp-for="LastName" class="form-control border border-info" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <label for="Address">Address</label>
+            <textarea asp-for="Address" class="form-control border border-info"></textarea>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+            <label for="Gender">Gender</label>
+            <select asp-for="Gender" class="form-control border border-info">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+    </div>
+    <br />
+
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+            @if (ViewBag.action == "AddPOST")
+            {
+                <button class="btn btn-info">Save</button>
+            }
+            else
+            {
+                <button class="btn btn-info">Update</button>
+            }
+            <a class="btn btn-success" asp-action="index">Cancel</a>
+        </div>
+        </div>
+
+    
+</form>
