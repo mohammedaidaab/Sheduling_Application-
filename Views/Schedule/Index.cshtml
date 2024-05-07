@@ -32,8 +32,8 @@
                 <td>@obj.EndDate.ToString("MM/dd/yyyy")</td>
                 <td>@obj.StartTime.ToString("HH:mm")</td>
                 <td>@obj.EndTime.ToString("HH:mm")</td>
-                <td><a asp-action="Update" class="btn btn-secondary" asp-route-empid="@obj.EmployeeID">Edit</a></td>
-                <td><a asp-action="Delete" class="btn btn-danger" asp-route-empid="@obj.EmployeeID">Delete</a></td>
+                <td><a asp-action="Update" class="btn btn-secondary" asp-route-scheduleid="@obj.ScheduleID">Edit</a></td>
+                <td><a asp-action="Delete" class="btn btn-danger" asp-route-scheduleid="@obj.ScheduleID">Delete</a></td>
             </tr>
         }
 
