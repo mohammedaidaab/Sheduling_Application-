@@ -7,9 +7,19 @@
 	DateTime date = new DateTime(Model.currentYear, Model.currentMonth, 1);
 	}
 @model CalenderModel
+
+
+
 <link href="~/css/calendersheet.css" rel="stylesheet" />
 
+
+
+<a class="btn btn-success p-2 text-light" asp-action="Index" asp-controller="Home">Control Panel</a>
+
+
+
 <h1>@date.ToString("MMMM") @Model.currentYear</h1>
+
 <p>Schedule</p>
 
 	<ul>
@@ -21,7 +31,7 @@
 				@foreach(var obj2 in obj.scheduleModels)
 				{
 
-                    <a class="details link rounded  text-dark" data-runid="@obj2.Scheduleid" href="javascript:;">@obj2.Name</a>
+                    <a class="details link text-dark" data-runid="@obj2.Scheduleid" href="javascript:;">@obj2.Name</a>
 
                     <br />
 				 
