@@ -13,8 +13,10 @@ namespace WebApplication1.Models
         public string Address { get; set; }
 
         public string Gender { get; set; }
+
+
         [ForeignKey("EmployeeID")]
-        public List<Schedule> schedules { get; set; }
+        public ICollection<Schedule> schedules { get; set; }
 
        
     }

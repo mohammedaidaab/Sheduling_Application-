@@ -81,8 +81,7 @@ namespace WebApplication1.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EmployeeID = table.Column<int>(type: "int", nullable: false)
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -231,7 +230,7 @@ namespace WebApplication1.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "643f78b6-f76f-4398-8d64-008ae371597a", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAIAAYagAAAAEKbdVPpMFoRSi+OFTRgdc989vXFFX2Ulcm1u+kvSg1Oi5PFm73lGDs3Fs2Mv2G9vdg==", null, false, "062f9af1-ac75-4b1e-9610-4a6200dbf390", false, "admin@abc.com" });
+                values: new object[] { "1", 0, "5ef90c9f-6e76-4ac1-99ed-142637f3b546", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAIAAYagAAAAEPXQfu8cwZ2ygZiPYOwMEBoF3ihU3OThaLpeao/wj+Xn+fgNtZ46A1Gbv3CZiii+zg==", null, false, "29948d13-7d52-4525-b402-c0b250729a6f", false, "admin@abc.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

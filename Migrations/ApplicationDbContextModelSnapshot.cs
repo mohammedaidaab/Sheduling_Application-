@@ -270,16 +270,16 @@ namespace WebApplication1.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "643f78b6-f76f-4398-8d64-008ae371597a",
+                            ConcurrencyStamp = "5ef90c9f-6e76-4ac1-99ed-142637f3b546",
                             Email = "admin@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
                             LastName = "Ofoedu",
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@abc.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKbdVPpMFoRSi+OFTRgdc989vXFFX2Ulcm1u+kvSg1Oi5PFm73lGDs3Fs2Mv2G9vdg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPXQfu8cwZ2ygZiPYOwMEBoF3ihU3OThaLpeao/wj+Xn+fgNtZ46A1Gbv3CZiii+zg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "062f9af1-ac75-4b1e-9610-4a6200dbf390",
+                            SecurityStamp = "29948d13-7d52-4525-b402-c0b250729a6f",
                             TwoFactorEnabled = false,
                             UserName = "admin@abc.com"
                         });
@@ -324,9 +324,6 @@ namespace WebApplication1.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("EmployeeID")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");

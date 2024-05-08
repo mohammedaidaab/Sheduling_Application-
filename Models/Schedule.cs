@@ -25,6 +25,7 @@ namespace WebApplication1.Models
         
         [DataType(DataType.Time)]
         public DateTime EndTime { get; set; }
+        [NotMapped]
         public int  EmployeeID { get; set; }
 
         [ForeignKey("ScheduleID")]

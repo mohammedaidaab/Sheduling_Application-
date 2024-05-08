@@ -25,7 +25,7 @@
         @foreach (var obj in Model)
         {
             <tr>
-                <th scope="row">@obj.Name</th>
+                <th scope="row">@obj.Name @obj.ScheduleID</th>
                
                 <td>@obj.Date.ToString("MM/dd/yyyy")</td>
                 <td>@obj.StartDate.ToString("MM/dd/yyyy")</td>
