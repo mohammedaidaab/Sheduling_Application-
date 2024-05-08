@@ -4,6 +4,16 @@ using System.Security.Cryptography.Xml;
 using WebApplication1.Models;
 using WebApplication1.ViewModel;
 
+
+
+
+
+using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
+using System.Security.Cryptography;
+using WebApplication1.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 namespace WebApplication1.Controllers
 {
 
@@ -15,6 +25,14 @@ namespace WebApplication1.Controllers
         public CalenderController(ApplicationDbContext db)
         {
             _db = db;
+        }
+
+        [HttpPost]
+        [Route("[controller]/[action]/{customerID?}")]
+        public ActionResult Details(string customerId)
+        {
+ 
+            return PartialView("Details", _db.schedules.Include(c=>c.employee).Where(x=>x.ScheduleID==int.Parse(customerId)).FirstOrDefault());
         }
         public IActionResult Index()
         {

@@ -20,37 +20,69 @@
 			{
 				@foreach(var obj2 in obj.scheduleModels)
 				{
-					<a asp-route-id="@obj2.Scheduleid">@obj2.Name</a><br />
-				
+
+                    <a class="details link rounded  text-dark" data-runid="@obj2.Scheduleid" href="javascript:;">@obj2.Name</a>
+
+                    <br />
+				 
 				}
 			}
 		</li>
 	}
-@* 	<li><time datetime="2022-02-02">2</time>Groundhog Day</li>
-		<li><time datetime="2022-02-03">3</time>Carrot Cake Day</li>
-		<li><time datetime="2022-02-04">4</time>Wear Red Day</li>
-		<li><time datetime="2022-02-05">5</time>Weatherperson's Day</li>
-		<li><time datetime="2022-02-06">6</time>Chopsticks Day</li>
-		<li><time datetime="2022-02-07">7</time>Periodic Table Day</li>
-		<li><time datetime="2022-02-08">8</time>Kite Flying Day</li>
-		<li><time datetime="2022-02-09">9</time>Pizza Day</li>
-		<li><time datetime="2022-02-10">10</time>Umbrella Day</li>
-		<li><time datetime="2022-02-11">11</time>Inventor's Day</li>
-		<li><time datetime="2022-02-12">12</time>Global Movie Day</li>
-		<li><time datetime="2022-02-13">13</time>Tortellini Day</li>
-		<li><time datetime="2022-02-14">14</time>Valentine's Day</li>
-		<li><time datetime="2022-02-15">15</time>Gumdrop Day</li>
-		<li><time datetime="2022-02-16">16</time>Do a Grouch a Favor Day</li>
-		<li><time datetime="2022-02-17">17</time>Cabbage Day</li>
-		<li><time datetime="2022-02-18">18</time>Battery Day</li>
-		<li class="today"><time datetime="2022-02-19">19</time>Chocolate Mint Day</li>
-		<li><time datetime="2022-02-20">20</time>Love Your Pet Day</li>
-		<li><time datetime="2022-02-21">21</time>President's Day</li>
-		<li><time datetime="2022-02-22">22</time>Cook a Sweet Potato Day</li>
-		<li><time datetime="2022-02-23">23</time>Tile Day</li>
-		<li><time datetime="2022-02-24">24</time>Toast Day</li>
-		<li><time datetime="2022-02-25">25</time>Clam Chowder Day</li>
-		<li><time datetime="2022-02-26">26</time>Pistachio Day</li>
-		<li><time datetime="2022-02-27">27</time>Polar Bear Day</li>
-		<li><time datetime="2022-02-28">28</time>Tooth Fairy Day</li> *@
+
 	</ul>
+
+
+<div id="partialModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Schedule Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function () {
+     
+        $(".details").click(function () {
+         
+           
+            // var className = $('#Scheduleid1').attr('class');
+       
+    
+            var customerId = $(this).data('runid');
+    
+            $.ajax({
+                type: "POST",
+                url: "/Calender/Details/" + customerId,
+                data: '{customerId: "' + customerId + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $("#partialModal").find(".modal-body").html(response);
+                    $("#partialModal").modal('show');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    });
+</script>

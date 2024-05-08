@@ -1,0 +1,71 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Schedule
+
+
+
+
+   
+    <div class="row">
+     
+        <div class="col">
+            <label for="FirstName">Sheduled Date</label>
+            <input asp-for="Date" class="form-control border border-info" readonly />
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="col">
+            <label for="Name">Schedule Name</label>
+            <input asp-for="Name" class="form-control border border-info" readonly/>
+        </div>
+       
+    </div>
+    <br />
+
+
+
+<div class="row">
+
+    <div class="col">
+        <label for="StartDate">Start Date</label>
+        <input asp-for="StartDate" class="form-control border border-info" readonly/>
+    </div>
+    <div class="col">
+        <label for="StartTime">Start Time</label>
+        <input asp-for="StartTime" class="form-control border border-info" readonly/>
+    </div>
+</div>
+<br />
+
+<div class="row">
+
+    <div class="col">
+        <label for="EndDate">End Date</label>
+        <input asp-for="EndDate" class="form-control border border-info" readonly/>
+    </div>
+    <div class="col">
+        <label for="EndTime">End Time</label>
+        <input asp-for="EndTime" class="form-control border border-info" readonly/>
+    </div>
+</div>
+<br />
+
+<div class="row">
+
+    <div class="col">
+        <label >Allocated Employees</label>
+        @foreach (var obj in @Model.employee)
+        {
+        
+                <p class="bg-info rounded mt-1 text-light form-control">@obj.FullName</p>
+      
+        }
+    </div>
+
+</div>
