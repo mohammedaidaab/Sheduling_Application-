@@ -34,10 +34,65 @@ namespace WebApplication1.Controllers
  
             return PartialView("Details", _db.schedules.Include(c=>c.employee).Where(x=>x.ScheduleID==int.Parse(customerId)).FirstOrDefault());
         }
+
+        public IActionResult Move(int value)
+        {
+            int Lastday = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month+value);
+            List<DetailsModels> detailPack = new List<DetailsModels>();
+
+
+
+            for (int x = 1; x <= Lastday; x++)
+            {
+                List<ScheduleModel> ScheulePAck = new List<ScheduleModel>();
+                DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month+value, x);
+
+                var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).ToList();
+
+                foreach (var obj in schdl)
+                {
+                    ScheduleModel sm = new ScheduleModel
+                    {
+                        Name = obj.Name,
+                        Scheduleid = obj.ScheduleID
+                    };
+
+                    ScheulePAck.Add(sm);
+
+                }
+
+                DetailsModels dp = new DetailsModels
+                {
+                    Day = x,
+                    scheduleModels = ScheulePAck
+
+                };
+
+                detailPack.Add(dp);
+
+
+            }
+
+
+
+
+            CalenderModel cm = new CalenderModel
+            {
+                currentMonth = 5,
+                currentYear = 2024,
+                Time = "12.30 - 01.30",
+                lastDay = Lastday,
+                Details = detailPack
+
+            };
+            
+
+            return View("Index",cm);
+        }
         public IActionResult Index()
         {
 
-            int Lastday= DateTime.DaysInMonth(2024, 05);
+            int Lastday= DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
             List<DetailsModels> detailPack = new List<DetailsModels>();
            
 
@@ -45,7 +100,7 @@ namespace WebApplication1.Controllers
 			for(int x=1; x <= Lastday; x++)
             {
 				List<ScheduleModel> ScheulePAck = new List<ScheduleModel>();
-				DateTime dt = new DateTime(2024, 5, x);
+				DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, x);
 
                 var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).ToList();
 

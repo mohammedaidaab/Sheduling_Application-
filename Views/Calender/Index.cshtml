@@ -14,14 +14,24 @@
 
 
 
-<a class="btn btn-success p-2 text-light" asp-action="Index" asp-controller="Home">Control Panel</a>
+<a class="btn btn-success p-2 text-light" asp-action="Index" asp-controller="Schedule">Control Panel</a>
 
 
 
 <h1>@date.ToString("MMMM") @Model.currentYear</h1>
 
 <p>Schedule</p>
-
+<div class="row">
+    <div class="col">
+       <div class="align-content-start">
+            <a class="btn btn-success" style="width:100px" asp-action="Move" asp-route-value="-1">Back</a>
+       </div>
+    </div>
+    <div class="col">
+        <a class="btn btn-success" style="width:100px" asp-action="Move" asp-route-value="1">Forwerd</a>
+    </div>
+</div>
+<br />
 	<ul>
 	@foreach (var obj in Model.Details)
 	{
@@ -30,9 +40,9 @@
 			{
 				@foreach(var obj2 in obj.scheduleModels)
 				{
-
-                    <a class="details link text-dark" data-runid="@obj2.Scheduleid" href="javascript:;">@obj2.Name</a>
-
+                   
+                    <a class="details link text-dark fw-bold " data-runid="@obj2.Scheduleid" href="javascript:;"><b>@obj2.Name</b></a>
+              
                     <br />
 				 
 				}
