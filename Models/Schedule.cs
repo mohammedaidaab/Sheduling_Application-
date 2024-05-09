@@ -33,5 +33,6 @@ namespace WebApplication1.Models
 
         [NotMapped]
         public string action { get; set; }
+
     }
 }

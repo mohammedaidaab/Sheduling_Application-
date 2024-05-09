@@ -1,0 +1,204 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AutoScheduleModel
+
+<div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-4">
+        <h4>Add Schedule</h4>
+    </div>
+</div>
+<form asp-action="AddPOST">
+    <br />
+   
+@*     <input asp-for="action" value="@ViewBag.action" hidden /> *@
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-3">
+            <label for="FirstName">Sheduled Date</label>
+            <input asp-for="Date" class="form-control border border-info" />
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <label for="Name">Schedule Name</label>
+            <input asp-for="Name" class="form-control border border-info" />
+        </div>
+
+    </div>
+    <br />
+
+
+ 
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+            <label for="StartDate">Start Date</label>
+            <input asp-for="StartDate" class="form-control border border-info" />
+        </div>
+        <div class="col-4">
+            <label for="EndDate">End Date</label>
+            <input asp-for="EndDate" class="form-control border border-info" />
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-2">
+            <input type="checkbox" asp-for="Shift1Active" /><b>Shift #1</b>
+        </div>
+    </div>
+    
+    
+    
+    <div class="row">
+        <div class="col-2">
+        </div>
+  
+        <div class="col-3">
+         
+            <label for="StartTime">Start Time</label>
+            <input asp-for="Shift1_StartTime" class="form-control border border-info" />
+     
+        </div>
+        <div class="col-3">
+         
+            <label for="EndTime">End Time</label>
+            <input asp-for="Shift1_EndTime" class="form-control border border-info" />
+        </div>
+
+        <div class="col-2">
+
+            <label for="EndTime">No of Employees</label>
+            <input asp-for="Shift1Emp" class="form-control border border-info" />
+        </div>
+    </div>
+    <br />
+
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-2">
+            <input type="checkbox" asp-for="Shift2Active" /><b>Shift #2</b>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+
+        <div class="col-3">
+
+            <label for="StartTime">Start Time</label>
+            <input asp-for="Shift2_StartTime" class="form-control border border-info" />
+
+        </div>
+        <div class="col-3">
+
+            <label for="EndTime">End Time</label>
+            <input asp-for="Shift2_EndTime" class="form-control border border-info" />
+        </div>
+
+        <div class="col-2">
+
+            <label for="EndTime">No of Employees</label>
+            <input asp-for="Shift2Emp" class="form-control border border-info" />
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-2">
+            <input type="checkbox" asp-for="Shift3Active" /><b>Shift #3</b>
+          
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+
+        <div class="col-3">
+
+            <label for="StartTime">Start Time</label>
+            <input asp-for="Shift3_StartTime" class="form-control border border-info" />
+
+        </div>
+        <div class="col-3">
+
+            <label for="EndTime">End Time</label>
+            <input asp-for="Shift3_EndTime" class="form-control border border-info" />
+        </div>
+
+        <div class="col-2">
+
+            <label for="EndTime">No of Employees</label>
+            <input asp-for="Shift3Emp" class="form-control border border-info" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-3  border border-1">
+            @if (Model!=null && Model.Shift1Active==true){
+                @foreach (var obj in Model.Shift1EmpList)
+                {
+                    <p>@obj.FullName</p>
+                }
+            }
+        </div>
+        <div class="col-3">
+            @if (Model != null && Model.Shift2Active == true)
+            {
+                @foreach (var obj in Model.Shift2EmpList)
+                {
+                    <p>@obj.FullName</p>
+                }
+            }
+        </div>
+        <div class="col-3">
+            @if (Model != null && Model.Shift3Active == true)
+            {
+                @foreach (var obj in Model.Shift3EmpList)
+                {
+                    <p>@obj.FullName</p>
+                }
+            }
+        </div>
+     </div>
+        
+    <br>
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+            @if (ViewBag.action == "AddPOST")
+            {
+                <button class="btn btn-info">Save</button>
+            }
+            else
+            {
+                <button class="btn btn-info">Update</button>
+            }
+            <a class="btn btn-success" asp-action="index">Cancel</a>
+        </div>
+    </div>
+</form>
