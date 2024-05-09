@@ -9,7 +9,7 @@ namespace WebApplication1.Controllers
     {
 
         private ApplicationDbContext _db;
-
+     
         public AutoScheduleController(ApplicationDbContext db)
         {
             _db = db;
@@ -57,43 +57,37 @@ namespace WebApplication1.Controllers
 
             List<int> list=GetAvilableEmployees(model.StartDate,model.EndDate);
 
+            AutoScheduleModel SchedulePack = new AutoScheduleModel();
+            SchedulePack = model;
+
             List<Employee> EligEmp = _db.employees.ToList();
-            int empCount = EligEmp.Count;
+            int empCount = EligEmp.Count-1;
             int empCurrent = 0;
+
             List<Employee> Schduleemp = new List<Employee>();
 
-     
-                if (model.Shift1Active==true)
-                {
-                    for(int y = 1; y <= model.Shift1Emp;y++)
-                    {
-                        Schduleemp.Add(EligEmp[empCurrent]);
-                        empCurrent++;
+         
 
-                    }
-
-                    var Schdl = new Schedule
-                    {
-                        employee = Schduleemp,
-                        Date = model.Date,
-                        StartDate = model.StartDate,
-                        EndDate = model.EndDate,
-                        StartTime = model.Shift1_StartTime,
-                        EndTime = model.Shift1_EndTime,
-                        Name=model.Name+"Shift #1"
-                    
-                    };
-
-                    model.Shift1EmpList = Schduleemp;
+            int NoofDaysforSchedule =(int) (model.EndDate - model.StartDate).TotalDays+1;
             
-                }
-                if (model.Shift2Active == true)
+            SchedulePack.ScheduleActiveDate = model.StartDate;
+
+            for (int t = 1; t <= NoofDaysforSchedule; t++)
+            {
+           
+
+                if (model.Shift1Active == true)
                 {
-                    Schduleemp=new List<Employee>();
-                    for (int y = 1; y <= model.Shift2Emp; y++)
+                    for (int y = 1; y <= model.Shift1Emp; y++)
                     {
                         Schduleemp.Add(EligEmp[empCurrent]);
                         empCurrent++;
+
+                        if (empCount < empCurrent)
+                        {
+                            empCurrent = 0;
+                        }
+
 
                     }
 
@@ -109,15 +103,87 @@ namespace WebApplication1.Controllers
 
                     };
 
-                    model.Shift2EmpList = Schduleemp;
+                    SchedulePack.Shift1EmpList = Schduleemp;
 
                 }
 
-                if (EligEmp.Count >= empCurrent)
+                if (empCount < empCurrent)
                 {
                     empCurrent = 0;
                 }
-        
+
+                if (model.Shift2Active == true)
+                {
+                    Schduleemp = new List<Employee>();
+                    for (int y = 1; y <= model.Shift2Emp; y++)
+                    {
+                        Schduleemp.Add(EligEmp[empCurrent]);
+                        empCurrent++;
+                        if (empCount < empCurrent)
+                        {
+                            empCurrent = 0;
+                        }
+                    }
+
+                    var Schdl = new Schedule
+                    {
+                        employee = Schduleemp,
+                        Date = model.Date,
+                        StartDate = model.StartDate,
+                        EndDate = model.EndDate,
+                        StartTime = model.Shift1_StartTime,
+                        EndTime = model.Shift1_EndTime,
+                        Name = model.Name + "Shift #1"
+
+                    };
+
+                    SchedulePack.Shift2EmpList = Schduleemp;
+
+                }
+
+                if (empCount < empCurrent)
+                {
+                    empCurrent = 0;
+                }
+                if (model.Shift3Active == true)
+                {
+                    Schduleemp = new List<Employee>();
+                    for (int y = 1; y <= model.Shift3Emp; y++)
+                    {
+                        Schduleemp.Add(EligEmp[empCurrent]);
+                        empCurrent++;
+                        if (empCount < empCurrent)
+                        {
+                            empCurrent = 0;
+                        }
+
+                    }
+
+                    var Schdl = new Schedule
+                    {
+                        employee = Schduleemp,
+                        Date = model.Date,
+                        StartDate = model.StartDate,
+                        EndDate = model.EndDate,
+                        StartTime = model.Shift1_StartTime,
+                        EndTime = model.Shift1_EndTime,
+                        Name = model.Name + "Shift #1"
+
+                    };
+
+                    SchedulePack.Shift3EmpList = Schduleemp;
+
+                }
+
+            
+                int yy = 0;
+
+                //Reset
+                 SchedulePack = new AutoScheduleModel();
+                Schduleemp = new List<Employee>();
+
+            }
+       
 
 
             return View("Add",model); 

@@ -270,16 +270,16 @@ namespace WebApplication1.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5ef90c9f-6e76-4ac1-99ed-142637f3b546",
+                            ConcurrencyStamp = "df053adc-186b-4c45-a1b5-c219613f2921",
                             Email = "admin@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
                             LastName = "Ofoedu",
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@abc.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPXQfu8cwZ2ygZiPYOwMEBoF3ihU3OThaLpeao/wj+Xn+fgNtZ46A1Gbv3CZiii+zg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAUQodxAbQDoTw7dJG3wirCcrW2e5ERjcK/4+FnY6oTt05WiLILOTfYeI6PIcj50bQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "29948d13-7d52-4525-b402-c0b250729a6f",
+                            SecurityStamp = "c06404cd-d4be-4b76-8a9c-7a073d478153",
                             TwoFactorEnabled = false,
                             UserName = "admin@abc.com"
                         });
@@ -340,6 +340,12 @@ namespace WebApplication1.Migrations
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("scheduleNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("shiftNo")
+                        .HasColumnType("int");
 
                     b.HasKey("ScheduleID");
 

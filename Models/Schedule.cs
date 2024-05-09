@@ -7,6 +7,8 @@ namespace WebApplication1.Models
     {
         public int ScheduleID { get; set; }
         public string Name { get; set; }
+        public int scheduleNo { get; set; }
+        public int shiftNo { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]

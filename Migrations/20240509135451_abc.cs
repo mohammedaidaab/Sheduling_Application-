@@ -77,6 +77,8 @@ namespace WebApplication1.Migrations
                     ScheduleID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    scheduleNo = table.Column<int>(type: "int", nullable: false),
+                    shiftNo = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -230,7 +232,7 @@ namespace WebApplication1.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "5ef90c9f-6e76-4ac1-99ed-142637f3b546", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAIAAYagAAAAEPXQfu8cwZ2ygZiPYOwMEBoF3ihU3OThaLpeao/wj+Xn+fgNtZ46A1Gbv3CZiii+zg==", null, false, "29948d13-7d52-4525-b402-c0b250729a6f", false, "admin@abc.com" });
+                values: new object[] { "1", 0, "df053adc-186b-4c45-a1b5-c219613f2921", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAIAAYagAAAAEAUQodxAbQDoTw7dJG3wirCcrW2e5ERjcK/4+FnY6oTt05WiLILOTfYeI6PIcj50bQ==", null, false, "c06404cd-d4be-4b76-8a9c-7a073d478153", false, "admin@abc.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

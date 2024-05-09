@@ -23,6 +23,10 @@ namespace WebApplication1.ViewModel
         public DateTime EndDate { get; set; }
 
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        public DateTime ScheduleActiveDate { get; set; }
+
         [DataType(DataType.Time)]
         public DateTime Shift1_StartTime { get; set; }
         [DataType(DataType.Time)]
