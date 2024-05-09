@@ -91,17 +91,7 @@ namespace WebApplication1.Controllers
 
                     }
 
-                    var Schdl = new Schedule
-                    {
-                        employee = Schduleemp,
-                        Date = model.Date,
-                        StartDate = model.StartDate,
-                        EndDate = model.EndDate,
-                        StartTime = model.Shift1_StartTime,
-                        EndTime = model.Shift1_EndTime,
-                        Name = model.Name + "Shift #1"
-
-                    };
+                  
 
                     SchedulePack.Shift1EmpList = Schduleemp;
 
@@ -125,17 +115,7 @@ namespace WebApplication1.Controllers
                         }
                     }
 
-                    var Schdl = new Schedule
-                    {
-                        employee = Schduleemp,
-                        Date = model.Date,
-                        StartDate = model.StartDate,
-                        EndDate = model.EndDate,
-                        StartTime = model.Shift1_StartTime,
-                        EndTime = model.Shift1_EndTime,
-                        Name = model.Name + "Shift #1"
-
-                    };
+              
 
                     SchedulePack.Shift2EmpList = Schduleemp;
 
@@ -159,17 +139,7 @@ namespace WebApplication1.Controllers
 
                     }
 
-                    var Schdl = new Schedule
-                    {
-                        employee = Schduleemp,
-                        Date = model.Date,
-                        StartDate = model.StartDate,
-                        EndDate = model.EndDate,
-                        StartTime = model.Shift1_StartTime,
-                        EndTime = model.Shift1_EndTime,
-                        Name = model.Name + "Shift #1"
-
-                    };
+                   
 
                     SchedulePack.Shift3EmpList = Schduleemp;
 
@@ -178,9 +148,93 @@ namespace WebApplication1.Controllers
             
                 int yy = 0;
 
+                if (SchedulePack.Shift1EmpList != null)
+                {
+                    if (SchedulePack.Shift1EmpList.Count > 0)
+                    {
+
+                        var Schdl = new Schedule
+                        {
+                            employee = SchedulePack.Shift1EmpList,
+                            Date = model.Date,
+                            ScheduleActiveDate = SchedulePack.ScheduleActiveDate,
+                            StartDate = model.StartDate,
+                            EndDate = model.EndDate,
+                            StartTime = model.Shift1_StartTime,
+                            EndTime = model.Shift1_EndTime,
+                            Name = model.Name + " Shift #1",
+                            scheduleNo = 1,
+                            shiftNo = 1
+
+                        };
+
+                        _db.Update(Schdl);
+                        _db.SaveChanges();
+                    }
+                }
+
+
+                if (SchedulePack.Shift2EmpList != null)
+                {
+                    if (SchedulePack.Shift2EmpList.Count > 0)
+                    {
+
+                        var Schdl = new Schedule
+                        {
+                            employee = SchedulePack.Shift2EmpList,
+                            Date = model.Date,
+                            ScheduleActiveDate = SchedulePack.ScheduleActiveDate,
+                            StartDate = model.StartDate,
+                            EndDate = model.EndDate,
+                            StartTime = model.Shift2_StartTime,
+                            EndTime = model.Shift2_EndTime,
+                            Name = model.Name + " Shift #2",
+                            scheduleNo = 1,
+                            shiftNo = 2
+
+                        };
+
+
+
+
+                        _db.Update(Schdl);
+                        _db.SaveChanges();
+                    }
+                }
+
+                if (SchedulePack.Shift3EmpList != null)
+                {
+
+                    if (SchedulePack.Shift3EmpList.Count > 0)
+                    {
+
+                        var Schdl = new Schedule
+                        {
+                            employee = SchedulePack.Shift3EmpList,
+                            Date = model.Date,
+                            ScheduleActiveDate = SchedulePack.ScheduleActiveDate,
+                            StartDate = model.StartDate,
+                            EndDate = model.EndDate,
+                            StartTime = model.Shift3_StartTime,
+                            EndTime = model.Shift3_EndTime,
+                            Name = model.Name + " Shift #3",
+                            scheduleNo = 1,
+                            shiftNo = 3
+
+                        };
+
+                        _db.Update(Schdl);
+                        _db.SaveChanges();
+                    }
+
+
+                }
+
                 //Reset
-                 SchedulePack = new AutoScheduleModel();
+
+                SchedulePack = new AutoScheduleModel();
                 Schduleemp = new List<Employee>();
+                SchedulePack.ScheduleActiveDate = model.StartDate.AddDays(t);
 
             }
        

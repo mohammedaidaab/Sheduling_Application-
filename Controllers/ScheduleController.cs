@@ -124,7 +124,7 @@ namespace WebApplication1.Controllers
         public IActionResult Index()
         {
             HttpContext.Session.SetComplexData("loggerUser", null);
-            var data = _db.schedules.ToList();
+            var data = _db.schedules.Include(x=>x.employee).ToList();
             return View(data);
         }
 

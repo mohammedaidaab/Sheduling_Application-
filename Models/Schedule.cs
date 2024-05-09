@@ -21,12 +21,16 @@ namespace WebApplication1.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
-       
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        public DateTime ScheduleActiveDate { get; set; }
+
         [DataType(DataType.Time)]
-        public DateTime StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
         
         [DataType(DataType.Time)]
-        public DateTime EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
         [NotMapped]
         public int  EmployeeID { get; set; }
 
