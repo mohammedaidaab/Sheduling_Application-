@@ -157,6 +157,8 @@
     </div>
     <br />
     <div class="row">
+        <div class="col-2">
+        </div>
         <div class="col-3  border border-1">
             @if (Model!=null && Model.Shift1Active==true){
                 @foreach (var obj in Model.Shift1EmpList)
@@ -165,7 +167,7 @@
                 }
             }
         </div>
-        <div class="col-3">
+        <div class="col-2  border border-1">
             @if (Model != null && Model.Shift2Active == true)
             {
                 @foreach (var obj in Model.Shift2EmpList)
@@ -174,7 +176,7 @@
                 }
             }
         </div>
-        <div class="col-3">
+        <div class="col-3  border border-1">
             @if (Model != null && Model.Shift3Active == true)
             {
                 @foreach (var obj in Model.Shift3EmpList)

@@ -59,12 +59,11 @@ namespace WebApplication1.Controllers
 
             List<Employee> EligEmp = _db.employees.ToList();
             int empCount = EligEmp.Count;
-            int empCurrent = 1;
+            int empCurrent = 0;
             List<Employee> Schduleemp = new List<Employee>();
 
-            for(int x=1;x<=noOFshifts;x++)
-            {
-                if (x == 1)
+     
+                if (model.Shift1Active==true)
                 {
                     for(int y = 1; y <= model.Shift1Emp;y++)
                     {
@@ -88,7 +87,37 @@ namespace WebApplication1.Controllers
                     model.Shift1EmpList = Schduleemp;
             
                 }
-            }
+                if (model.Shift2Active == true)
+                {
+                    Schduleemp=new List<Employee>();
+                    for (int y = 1; y <= model.Shift2Emp; y++)
+                    {
+                        Schduleemp.Add(EligEmp[empCurrent]);
+                        empCurrent++;
+
+                    }
+
+                    var Schdl = new Schedule
+                    {
+                        employee = Schduleemp,
+                        Date = model.Date,
+                        StartDate = model.StartDate,
+                        EndDate = model.EndDate,
+                        StartTime = model.Shift1_StartTime,
+                        EndTime = model.Shift1_EndTime,
+                        Name = model.Name + "Shift #1"
+
+                    };
+
+                    model.Shift2EmpList = Schduleemp;
+
+                }
+
+                if (EligEmp.Count >= empCurrent)
+                {
+                    empCurrent = 0;
+                }
+        
 
 
             return View("Add",model); 
