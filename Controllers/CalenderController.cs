@@ -41,21 +41,24 @@ namespace WebApplication1.Controllers
             int Lastday = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month+value);
             List<DetailsModels> detailPack = new List<DetailsModels>();
 
-
+      
 
             for (int x = 1; x <= Lastday; x++)
             {
                 List<ScheduleModel> ScheulePAck = new List<ScheduleModel>();
                 DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month+value, x);
 
-                var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).ToList();
+                var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).GroupBy(c => c.Name)
+    .Select(cs => new { Name = cs.Max(s => s.Name), ScheduleID = cs.Max(s => s.ScheduleID), scheduleNo = cs.Max(s => s.scheduleNo) })
+    .ToList();
 
                 foreach (var obj in schdl)
                 {
                     ScheduleModel sm = new ScheduleModel
                     {
                         Name = obj.Name,
-                        Scheduleid = obj.ScheduleID
+                        Scheduleid = obj.ScheduleID,
+                        scheduleNo = obj.scheduleNo
                     };
 
                     ScheulePAck.Add(sm);
