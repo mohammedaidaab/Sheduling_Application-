@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using System.Reflection.Emit;
 
 namespace WebApplication1.Models
 {
@@ -13,6 +15,7 @@ namespace WebApplication1.Models
 
         public DbSet<Employee> employees { get; set; } = null!;
         public DbSet<Schedule> schedules { get; set; } = null!;
+        public DbSet<MasterData> masterDatas { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder builder)
 		{
 			base.OnModelCreating(builder);
@@ -60,14 +63,15 @@ namespace WebApplication1.Models
 
 			//set user role to admin
 			builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
-			{
-				RoleId = "1",
-				UserId = "1"
-			});
+            {
+                RoleId = "1",
+                UserId = "1"
+            });
 
+            builder.Entity<MasterData>().HasData(
+    new MasterData { id = 1, scheduleNo = 1 });
 
-
-		}
+        }
 
 
 

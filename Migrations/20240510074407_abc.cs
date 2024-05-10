@@ -71,6 +71,19 @@ namespace WebApplication1.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "masterDatas",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    scheduleNo = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_masterDatas", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "schedules",
                 columns: table => new
                 {
@@ -82,8 +95,9 @@ namespace WebApplication1.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ScheduleActiveDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -232,7 +246,12 @@ namespace WebApplication1.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "df053adc-186b-4c45-a1b5-c219613f2921", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAIAAYagAAAAEAUQodxAbQDoTw7dJG3wirCcrW2e5ERjcK/4+FnY6oTt05WiLILOTfYeI6PIcj50bQ==", null, false, "c06404cd-d4be-4b76-8a9c-7a073d478153", false, "admin@abc.com" });
+                values: new object[] { "1", 0, "6a7d42ed-4261-4fe9-82ec-6603c626ca7b", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAIAAYagAAAAEKgDryplXq0I+QOe8cKyCS3FZaSmug0Y8DM+EAACqqhV3RYvdpiPDymr+EfSNPJ7nQ==", null, false, "3bdbabd5-968f-4ed1-9c8d-e829f19377db", false, "admin@abc.com" });
+
+            migrationBuilder.InsertData(
+                table: "masterDatas",
+                columns: new[] { "id", "scheduleNo" },
+                values: new object[] { 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -304,6 +323,9 @@ namespace WebApplication1.Migrations
 
             migrationBuilder.DropTable(
                 name: "EmployeeSchedule");
+
+            migrationBuilder.DropTable(
+                name: "masterDatas");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

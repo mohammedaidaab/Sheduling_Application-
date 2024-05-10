@@ -128,6 +128,12 @@ namespace WebApplication1.Controllers
             return View(data);
         }
 
+        public IActionResult ShowbyNo(int runid)
+        {
+         
+            var data = _db.schedules.Include(x => x.employee).Where(x=>x.scheduleNo==runid).ToList();
+            return View("Index",data);
+        }
 
         public IActionResult Delete(int scheduleid)
         {

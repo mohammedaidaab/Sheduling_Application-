@@ -35,7 +35,8 @@ namespace WebApplication1.Controllers
             return PartialView("Details", _db.schedules.Include(c=>c.employee).Where(x=>x.ScheduleID==int.Parse(customerId)).FirstOrDefault());
         }
 
-        public IActionResult Move(int value)
+        [HttpPost]
+        public IActionResult Move(int value,int currentMonth)
         {
             int Lastday = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month+value);
             List<DetailsModels> detailPack = new List<DetailsModels>();
@@ -78,7 +79,7 @@ namespace WebApplication1.Controllers
 
             CalenderModel cm = new CalenderModel
             {
-                currentMonth = 5,
+                currentMonth = currentMonth+value,
                 currentYear = 2024,
                 Time = "12.30 - 01.30",
                 lastDay = Lastday,
@@ -102,13 +103,16 @@ namespace WebApplication1.Controllers
 				List<ScheduleModel> ScheulePAck = new List<ScheduleModel>();
 				DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, x);
 
-                var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).ToList();
+                var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).GroupBy(c => c.Name)
+    .Select(cs => new { Name = cs.Max(s=>s.Name), ScheduleID=cs.Max(s=>s.ScheduleID), scheduleNo=cs.Max(s=>s.scheduleNo) })
+    .ToList();
 
-                foreach(var obj in schdl)
+                foreach (var obj in schdl)
                 {
                     ScheduleModel sm = new ScheduleModel { 
                     Name = obj.Name,    
-                    Scheduleid=obj.ScheduleID
+                    Scheduleid=obj.ScheduleID,
+                    scheduleNo=obj.scheduleNo
                     };
 
                     ScheulePAck.Add(sm);

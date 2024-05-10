@@ -24,24 +24,45 @@ namespace WebApplication1.Controllers
 
         public List<int> GetAvilableEmployees(DateTime Start,DateTime End)
         {
-            var schdules = _db.schedules.Include(x=>x.employee).ToList();
-            List<int> list=new List<int>();
-
-            foreach(var obj in schdules)
+            //var schdules = _db.schedules.Include(x=>x.employee).ToList();
+            var schdules = _db.schedules.Include(x => x.employee).Where(x=>(x.StartDate>=Start && x.StartDate<=End) || (x.EndDate>=Start && x.EndDate<=End) ).ToList();
+            List<int> tmpEmp = new List<int>();
+            foreach (var obj in schdules)
             {
                 var emp = obj.employee;
-                foreach(var obj2 in emp)
+                foreach (var obj2 in emp)
                 {
-                    list.Add(obj2.EmployeeID);
+                    tmpEmp.Add(obj2.EmployeeID);
                 }
             }
+
+            var emp2 = _db.employees.Where(x => !tmpEmp.Contains(x.EmployeeID)).ToList();
+            List<int> tmpEmp2=new List<int>();
+            foreach(var obj in emp2)
+            {
+                tmpEmp2.Add(obj.EmployeeID);
+            }
+          
             
-            return list;
+            return tmpEmp2;
         }
 
         public IActionResult AddPOST(AutoScheduleModel model)
         {
+            var Mdata = _db.masterDatas.FirstOrDefault();
+            int ScheduleNo = Mdata.scheduleNo;
+
+            Mdata.scheduleNo= ScheduleNo+1;
+
+            _db.Update(Mdata);
+            _db.SaveChanges();
+
+
+
             int noOFshifts = 0;
+
+      
+
             if (model.Shift1Active == true)
             {
                 noOFshifts ++;
@@ -162,8 +183,8 @@ namespace WebApplication1.Controllers
                             EndDate = model.EndDate,
                             StartTime = model.Shift1_StartTime,
                             EndTime = model.Shift1_EndTime,
-                            Name = model.Name + " Shift #1",
-                            scheduleNo = 1,
+                            Name = model.Name + " [Shift #1]",
+                            scheduleNo = ScheduleNo,
                             shiftNo = 1
 
                         };
@@ -188,8 +209,8 @@ namespace WebApplication1.Controllers
                             EndDate = model.EndDate,
                             StartTime = model.Shift2_StartTime,
                             EndTime = model.Shift2_EndTime,
-                            Name = model.Name + " Shift #2",
-                            scheduleNo = 1,
+                            Name = model.Name + " [Shift #2]",
+                            scheduleNo = ScheduleNo,
                             shiftNo = 2
 
                         };
@@ -217,8 +238,8 @@ namespace WebApplication1.Controllers
                             EndDate = model.EndDate,
                             StartTime = model.Shift3_StartTime,
                             EndTime = model.Shift3_EndTime,
-                            Name = model.Name + " Shift #3",
-                            scheduleNo = 1,
+                            Name = model.Name + " [Shift #3]",
+                            scheduleNo = ScheduleNo,
                             shiftNo = 3
 
                         };

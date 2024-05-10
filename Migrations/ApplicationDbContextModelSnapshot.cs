@@ -270,16 +270,16 @@ namespace WebApplication1.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "df053adc-186b-4c45-a1b5-c219613f2921",
+                            ConcurrencyStamp = "6a7d42ed-4261-4fe9-82ec-6603c626ca7b",
                             Email = "admin@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
                             LastName = "Ofoedu",
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@abc.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAUQodxAbQDoTw7dJG3wirCcrW2e5ERjcK/4+FnY6oTt05WiLILOTfYeI6PIcj50bQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKgDryplXq0I+QOe8cKyCS3FZaSmug0Y8DM+EAACqqhV3RYvdpiPDymr+EfSNPJ7nQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c06404cd-d4be-4b76-8a9c-7a073d478153",
+                            SecurityStamp = "3bdbabd5-968f-4ed1-9c8d-e829f19377db",
                             TwoFactorEnabled = false,
                             UserName = "admin@abc.com"
                         });
@@ -314,6 +314,29 @@ namespace WebApplication1.Migrations
                     b.ToTable("employees");
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.MasterData", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int>("scheduleNo")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("masterDatas");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            scheduleNo = 1
+                        });
+                });
+
             modelBuilder.Entity("WebApplication1.Models.Schedule", b =>
                 {
                     b.Property<int>("ScheduleID")
@@ -328,17 +351,20 @@ namespace WebApplication1.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EndTime")
+                    b.Property<DateTime?>("EndTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("ScheduleActiveDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("StartTime")
+                    b.Property<DateTime?>("StartTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("scheduleNo")
