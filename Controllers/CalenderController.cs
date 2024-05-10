@@ -35,7 +35,7 @@ namespace WebApplication1.Controllers
             return PartialView("Details", _db.schedules.Include(c=>c.employee).Where(x=>x.ScheduleID==int.Parse(customerId)).FirstOrDefault());
         }
 
-        [HttpPost]
+    
         public IActionResult Move(int value,int currentMonth)
         {
             int Lastday = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month+value);
