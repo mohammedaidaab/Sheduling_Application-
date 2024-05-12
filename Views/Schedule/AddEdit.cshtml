@@ -125,13 +125,13 @@
         <div class="col-4">
             @if (ViewBag.action == "AddPOST")
             {
-                <button class="btn btn-info">Save</button>
+                <button class="btn btn-dark">Save</button>
             }
             else
             {
-                <button class="btn btn-info">Update</button>
+                <button class="btn btn-dark">Update</button>
             }
-            <a class="btn btn-success" asp-action="index">Cancel</a>
+            <a class="btn btn-outline-dark" asp-action="index" asp-controller="Schedule">Cancel</a>
         </div>
     </div>
        </form>

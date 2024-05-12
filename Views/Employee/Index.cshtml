@@ -5,10 +5,10 @@
 }
 @model List<Employee>
 <br />
-<a class="btn btn-info" asp-action="Add" asp-controller="Employee">New Employee</a>
+<a class="btn btn-dark" asp-action="Add" asp-controller="Employee">New Employee</a>
 <br />
 <br />
-<table class="table">
+<table class="table table-hover table-striped table-dark">
     <thead class="thead-dark">
         <tr>
             <th scope="col">First Name</th>
@@ -25,7 +25,7 @@
                 <th scope="row">@obj.FirstName</th>
             <td>@obj.LastName</td>
             <td>@obj.Gender</td>
-            <td><a asp-action="Update" class="btn btn-secondary" asp-route-empid="@obj.EmployeeID">Edit</a></td>
+                <td><a asp-action="Update" class="btn btn-secondary" asp-route-empid="@obj.EmployeeID">Edit</a></td>
                 <td><a asp-action="Delete" class="btn btn-danger" asp-route-empid="@obj.EmployeeID">Delete</a></td>
         </tr>
         }

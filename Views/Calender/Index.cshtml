@@ -1,7 +1,7 @@
 ﻿<!-- days sourced from: https://nationaldaycalendar.com/february/ -->
 
 	@{
-		Layout = null;
+		// Layout = null;
 		int i=1;
 
 	DateTime date = new DateTime(Model.currentYear, Model.currentMonth, 1);
@@ -14,11 +14,8 @@
 
 <div style="height:30px"></div>
 
-<a class="btn btn-success p-2 text-light" asp-action="Index" asp-controller="Schedule">Control Panel</a>
 
-
-
-<h1>@date.ToString("MMMM") @Model.currentYear</h1>
+<h1 class="text-center">@date.ToString("MMMM") @Model.currentYear</h1>
 
 <p>Schedule</p>
 
@@ -39,15 +36,31 @@
 	<ul>
 	@foreach (var obj in Model.Details)
 	{
-		<li><time datetime="2022-02-01">@obj.Day</time>
+        DateTime cdate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, obj.Day);
+
+        <li>
+            <div class="row">
+                <div class="col">
+            <time datetime="2022-02-01"></time><h3>@obj.Day</h3>
+                </div>
+                <div class="col">
+                    @cdate.DayOfWeek.ToString()
+                </div>
+"
+            </div>
 			@if (obj.scheduleModels != null)
 			{
+             
+         
 				@foreach(var obj2 in obj.scheduleModels)
 				{
-
-                    <a class="link text-dark fw-bold " asp-route-runid ="@obj2.scheduleNo" asp-action="ShowbyNo" asp-controller="Schedule"><b>@obj2.Name</b></a>
+                                 
+                   <a class="link text-dark fw-bold " asp-route-runid ="@obj2.scheduleNo" asp-action="ShowbyNo" asp-controller="Schedule"><b>@obj2.Name
+                        </b>
+                    </a>
               
-                    <br />
+
+                 
 				 
 				}
 			}

@@ -106,10 +106,10 @@ namespace WebApplication1.Controllers
 				List<ScheduleModel> ScheulePAck = new List<ScheduleModel>();
 				DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, x);
 
-                var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).GroupBy(c => c.Name)
-    .Select(cs => new { Name = cs.Max(s=>s.Name), ScheduleID=cs.Max(s=>s.ScheduleID), scheduleNo=cs.Max(s=>s.scheduleNo) })
-    .ToList();
-
+                //            var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).GroupBy(c => c.Name)
+                //.Select(cs => new { Name = cs.Max(s=>s.Name), ScheduleID=cs.Max(s=>s.ScheduleID), scheduleNo=cs.Max(s=>s.scheduleNo) })
+                //.ToList();
+                var schdl = _db.schedules.Where(x => x.ScheduleActiveDate == dt).GroupBy(x=>x.scheduleNo).Select  (x=>new { ScheduleID = x.Key, scheduleNo=x.Max(y=>y.scheduleNo),Name=x.Max(y=>y.Name) }).ToList();
                 foreach (var obj in schdl)
                 {
                     ScheduleModel sm = new ScheduleModel { 
