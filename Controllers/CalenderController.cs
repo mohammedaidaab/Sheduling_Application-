@@ -38,20 +38,19 @@ namespace WebApplication1.Controllers
     
         public IActionResult Move(int value,int currentMonth)
         {
-            int Lastday = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month+value);
+
+            int Lastday = DateTime.DaysInMonth(DateTime.Now.Year, currentMonth+value);
+
             List<DetailsModels> detailPack = new List<DetailsModels>();
 
-      
 
             for (int x = 1; x <= Lastday; x++)
             {
                 List<ScheduleModel> ScheulePAck = new List<ScheduleModel>();
-                DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month+value, x);
+                DateTime dt = new DateTime(DateTime.Now.Year,currentMonth+value, x);
 
-                var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).GroupBy(c => c.Name)
-    .Select(cs => new { Name = cs.Max(s => s.Name), ScheduleID = cs.Max(s => s.ScheduleID), scheduleNo = cs.Max(s => s.scheduleNo) })
-    .ToList();
-
+       
+                var schdl = _db.schedules.Where(x => x.ScheduleActiveDate == dt).GroupBy(x => x.scheduleNo).Select(x => new { ScheduleID = x.Key, scheduleNo = x.Max(y => y.scheduleNo), Name = x.Max(y => y.Name) }).ToList();
                 foreach (var obj in schdl)
                 {
                     ScheduleModel sm = new ScheduleModel
@@ -82,17 +81,20 @@ namespace WebApplication1.Controllers
 
             CalenderModel cm = new CalenderModel
             {
-                currentMonth = currentMonth+value,
-                currentYear = 2024,
+                currentMonth = currentMonth + value,
+                currentYear = DateTime.Now.Year,
                 Time = "12.30 - 01.30",
                 lastDay = Lastday,
                 Details = detailPack
 
             };
-            
+
 
             return View("Index",cm);
         }
+
+
+
         public IActionResult Index()
         {
 
@@ -106,9 +108,7 @@ namespace WebApplication1.Controllers
 				List<ScheduleModel> ScheulePAck = new List<ScheduleModel>();
 				DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, x);
 
-                //            var schdl = _db.schedules.Where(x => x.StartDate <= dt.Date && x.EndDate >= dt.Date).GroupBy(c => c.Name)
-                //.Select(cs => new { Name = cs.Max(s=>s.Name), ScheduleID=cs.Max(s=>s.ScheduleID), scheduleNo=cs.Max(s=>s.scheduleNo) })
-                //.ToList();
+   
                 var schdl = _db.schedules.Where(x => x.ScheduleActiveDate == dt).GroupBy(x=>x.scheduleNo).Select  (x=>new { ScheduleID = x.Key, scheduleNo=x.Max(y=>y.scheduleNo),Name=x.Max(y=>y.Name) }).ToList();
                 foreach (var obj in schdl)
                 {
@@ -138,8 +138,8 @@ namespace WebApplication1.Controllers
 
 
 			CalenderModel cm=new CalenderModel{
-                currentMonth=5,
-                currentYear=2024,
+                currentMonth= DateTime.Now.Month,
+                currentYear= DateTime.Now.Year,
                 Time="12.30 - 01.30",
                 lastDay= Lastday,
                 Details=detailPack  
