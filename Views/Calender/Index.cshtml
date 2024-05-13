@@ -15,24 +15,33 @@
 <div style="height:30px"></div>
 
 
-<h1 class="text-center">@date.ToString("MMMM") @Model.currentYear</h1>
+<h3 class="text-center">@date.ToString("MMMM") @Model.currentYear</h3>
 
-<p>Schedule</p>
+
 
 <div class="row">
+    <div class="col-1"></div>
     <div class="col">
-       <div class="align-content-start">
-            <a class="btn btn-success" style="width:100px" asp-route-value="-1" asp-route-currentMonth="@Model.currentMonth" asp-action="Move">Back</a>
+       <div class="align-items-start">
+            <a class="btn btn-outline-dark " style="width:100px"  asp-route-value="-1" asp-route-currentMonth="@Model.currentMonth" asp-action="Move">Back</a>
        </div>
     </div>
+
     <div class="col">
-        <a class="btn btn-success" style="width:100px" asp-route-value="1"  asp-route-currentMonth="@Model.currentMonth" asp-action="Move">Forwerd</a>
+        <div class="text-end">
+            <a class="btn btn-outline-dark" asp-route-value="1" asp-route-currentMonth="@Model.currentMonth" asp-action="Move">Forwerd</a>
+        </div>
     </div>
+
 </div>
 
 
 
 <br />
+<div class="row">
+
+    <div class="col-8">
+  
 	<ul>
 	@foreach (var obj in Model.Details)
 	{
@@ -68,8 +77,8 @@
 	}
 
 	</ul>
-
-
+    </div>
+    </div>
 <div id="partialModal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -88,7 +97,8 @@
     </div>
 </div>
 
-
+<br />
+<br />
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

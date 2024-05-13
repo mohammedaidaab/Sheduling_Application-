@@ -5,7 +5,7 @@ body {
     flex-flow: column;
     align-items: center;
     font-family: "Poppins", serif;
-    background: rgb(238, 174, 202);
+/*    background: rgb(238, 174, 202);*/
   /*  background: radial-gradient( circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100% );
 */}
 
@@ -32,7 +32,7 @@ ul {
     font-weight: 300;
     font-size: 0.8rem;
     box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.25);
+/*    background: rgba(255, 255, 255, 0.25);*/
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -53,6 +53,6 @@ ul {
     font-weight: 800;
 }
 
-background: #ffffff70;
+/*background: #ffffff70;*/
 }
 }
